@@ -1,0 +1,20 @@
+cookbook_name = 'prometheus'
+
+default[cookbook_name]['prometheus']['github_url'] = 'https://github.com/prometheus/prometheus'
+default[cookbook_name]['prometheus']['version'] = '2.10.0'
+default[cookbook_name]['prometheus']['checksum'] = 'f4233783826f18606b79e5cef0686e4a9c2030146a3c7ce134f0add09f5adcb7'
+default[cookbook_name]['prometheus']['config_file'] = '/etc/prometheus/prometheus.yml'
+default[cookbook_name]['prometheus']['install_dir'] = '/etc/prometheus'
+default[cookbook_name]['prometheus']['data_dir'] = '/var/lib/prometheus'
+default[cookbook_name]['prometheus']['bin_dir'] = '/usr/local/bin'
+default[cookbook_name]['prometheus']['user'] = 'prometheus'
+default[cookbook_name]['prometheus']['config']['scrape_interval'] = '15s'
+default[cookbook_name]['prometheus']['config']['labels'] = nil
+default[cookbook_name]['prometheus']['config']['remote_write']['url'] = nil
+default[cookbook_name]['prometheus']['config']['remote_write']['username'] = nil
+default[cookbook_name]['prometheus']['config']['remote_write']['password'] = nil
+default[cookbook_name]['node_exporter']['github_url'] = 'https://github.com/prometheus/node_exporter'
+default[cookbook_name]['node_exporter']['version'] = '0.18.1'
+default[cookbook_name]['node_exporter']['checksum'] = 'b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424'
+default[cookbook_name]['node_exporter']['bin_dir'] = '/usr/local/bin'
+default[cookbook_name]['node_exporter']['user'] = 'node_exporter'

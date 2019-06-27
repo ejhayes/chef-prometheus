@@ -1,0 +1,24 @@
+global:
+  scrape_interval: <%= node[cookbook_name]['prometheus']['config']['scrape_interval'] %>
+<% if node[cookbook_name]['prometheus']['config']['labels'] %>
+  external_labels:
+  <% node[cookbook_name]['prometheus']['config']['labels'].each do |key,val| %>
+    <%= key %>: <%= val %>
+  <% end %>
+<% end %>
+<% if node[cookbook_name]['prometheus']['config']['remote_write']['url'] %>
+remote_write:
+- url: <%= node[cookbook_name]['prometheus']['config']['remote_write']['url'] %>
+  basic_auth:
+    username: <%= node[cookbook_name]['prometheus']['config']['remote_write']['username'] %>
+    password: <%= node[cookbook_name]['prometheus']['config']['remote_write']['password'] %>
+<% end %>
+<% if @scrapers %>
+scrape_configs:
+  <% @scrapers.each do |scraper| %>
+  - job_name: '<%= scraper[:job_name] %>'
+    scrape_interval: '<%= scraper[:scrape_interval] %>'
+    static_configs:
+      - targets: <%= scraper[:targets] %>
+  <% end %>
+<% end %>

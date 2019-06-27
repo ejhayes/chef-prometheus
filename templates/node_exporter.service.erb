@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=<%= node[cookbook_name]['node_exporter']['user'] %>
+Group=<%= node[cookbook_name]['node_exporter']['user'] %>
+Type=simple
+ExecStart=<%= node[cookbook_name]['node_exporter']['bin_dir'] %>/node_exporter
+
+[Install]
+WantedBy=multi-user.target

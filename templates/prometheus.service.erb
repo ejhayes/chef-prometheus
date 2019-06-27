@@ -1,0 +1,17 @@
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=<%= node[cookbook_name]['prometheus']['user'] %>
+Group=<%= node[cookbook_name]['prometheus']['user'] %>
+Type=simple
+ExecStart=<%= node[cookbook_name]['prometheus']['bin_dir'] %>/prometheus \
+    --config.file <%= node[cookbook_name]['prometheus']['config_file'] %> \
+    --storage.tsdb.path <%= node[cookbook_name]['prometheus']['data_dir'] %> \
+    --web.console.templates=<%= node[cookbook_name]['prometheus']['install_dir'] %>/consoles \
+    --web.console.libraries=<%= node[cookbook_name]['prometheus']['install_dir'] %>/console_libraries
+
+[Install]
+WantedBy=multi-user.target
